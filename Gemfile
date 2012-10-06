@@ -24,3 +24,5 @@ group :test, :development do
 end
 
 gem 'jquery-rails'
+
+gem 'devise'

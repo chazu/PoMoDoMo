@@ -40,8 +40,6 @@
                 %a{:href => "#"} Home
               %li
                 %a{:href => "#about"} About
-              %li
-                %a{:href => "#contact"} Contact
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                   Dropdown
@@ -62,32 +60,20 @@
             %form.navbar-form.pull-right
               %input.span2{:placeholder => "Email", :type => "text"}
                 %input.span2{:placeholder => "Password", :type => "password"}
-                  %button.btn{:type => "submit"} Sign in
+                  - unless current_user
+                    = link_to "Sign in", new_user_session_path, :class => 'btn'                    
+                    %a.btn{:href => new_user_registration_path} Sign up
+                  - else
+                    = link_to "Log out", destroy_user_session_path, :method => :delete, :class => 'btn'
+
           / /.nav-collapse
+    %p.notice{:hidden => "true"}
+      = notice
+    %p.alert{:hidden => "true" }
+      = alert
     .container
-      / Main hero unit for a primary marketing message or call to action
-      .hero-unit
-        %h1 Hello, world!
-        %p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-        %p
-          %a.btn.btn-primary.btn-large Learn more »
-      / Example row of columns
-      .row
-        .span4
-          %h2 Heading
-          %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-          %p
-            %a.btn{:href => "#"} View details »
-        .span4
-          %h2 Heading
-          %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-          %p
-            %a.btn{:href => "#"} View details »
-        .span4
-          %h2 Heading
-          %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          %p
-            %a.btn{:href => "#"} View details »
+      = yield
+
       %hr
         %footer
-          %p © Company 2012
+          %p © Your Mom 2012
