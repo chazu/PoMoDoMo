@@ -1,3 +1,11 @@
+- if current_user
+  = current_user.first_name
+  = current_user.last_name
+- else
+  = link_to "Sign In w/ Facebook", user_omniauth_authorize_path(:facebook)
+
+
+
 .row
   .span10
     .hero-unit#countdown_timer
