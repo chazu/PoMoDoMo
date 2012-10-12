@@ -39,3 +39,10 @@ Am i missing anything? I'm tired.
 
 We can divvy up tasks however you guys want. As for coding, do you think we should use feature branches for our individual features? I reckon its a good idea, but whatever you guys want to do.
 
+
+To use omniauth
+-----------------
+Download this file: http://curl.haxx.se/ca/cacert.pem
+Put it in your computer as: /etc/ssl/certs/cacert.pem
+
+
