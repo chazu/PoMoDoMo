@@ -34,4 +34,7 @@ class User < ActiveRecord::Base
     user
   end
   
+  def trophy_score
+    trophies.inject(0) {|memo, trophy| memo += trophy.value }
+  end
 end
