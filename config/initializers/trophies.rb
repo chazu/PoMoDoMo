@@ -1,7 +1,7 @@
 module TrophyWife
-
+  
   attr_accessor :trophies, :trophy_dir
-
+  
   @@trophies = []
   @@trophy_dir = Rails.root + File.expand_path("app","trophies")
 
@@ -45,7 +45,7 @@ module TrophyWife
     end
 
     def award_if_merited(user, trophy)
-      user.trophies << smelt_trophy(trophy) if trophy.merited?(user) && not user.trophies.where(:name => trophy.name).nil?
+      user.trophies <<(smelt_trophy(trophy)) if trophy.merited?(user) and not user.trophies.where(:name => trophy.name).nil?
     end
 
     def officiate(user)
