@@ -3,17 +3,20 @@ module TrophyWife
   attr_accessor :trophies, :trophy_dir
   
   @@trophies = []
-  @@trophy_dir = Rails.root + File.expand_path("app","trophies")
+  @@trophy_dir = File.join(Rails.root, "app", "trophies", "*.rb")
 
-  Dir[@@trophy_dir].each do |trophy|
-    require trophy
-    @@trophies << trophy
+  def self.load_trophies
+    existing_classes = ObjectSpace.each_object(Class).to_a
+    Dir[@@trophy_dir].each do |trophy|
+      require trophy
+    end
+    @@trophies = ObjectSpace.each_object(Class).to_a - existing_classes
   end
 
   def self.trophies
     @@trophies
   end
-
+  
   class TrophyBase
 
     def self.merited?(user)
@@ -40,19 +43,21 @@ module TrophyWife
       @@instance ||= TrophyOfficial.new
     end
 
-    def smelt_trophy(trophy)
+    def self.smelt_trophy(trophy)
       Trophy.create(:value => trophy.value, :text => trophy.text, :name => trophy.name)
     end
 
-    def award_if_merited(user, trophy)
+    def self.award_if_merited(user, trophy)
       user.trophies <<(smelt_trophy(trophy)) if trophy.merited?(user) and not user.trophies.where(:name => trophy.name).nil?
     end
 
-    def officiate(user)
+    def self.officiate(user)
       TrophyWife.trophies.each do |trophy|
-        award_if_merited(user, trophy)
+        self.award_if_merited(user, trophy)
       end
     end
 
   end
 end
+
+TrophyWife.load_trophies
