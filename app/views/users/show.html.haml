@@ -1,0 +1,15 @@
+%ul.nav.nav-tabs#myTab
+  %li
+    = link_to 'profile', '#profile'
+  %li
+    = link_to 'friends', '#friends'
+  %li
+    = link_to 'trophies', '#trophies'
+
+.tab-content
+  #profile.tab-pane.active
+    = render :partial => 'profile'
+  #friends.tab-pane
+    = render :partial => 'friends'
+  #trophies.tab-pane
+    = render :partial => 'trophies'

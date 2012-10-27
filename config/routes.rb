@@ -4,4 +4,12 @@ Pomodomo::Application.routes.draw do
   # Defaults to home controller's index
   root :to => 'home#index'
 
+  resources :users do
+    member do
+      get 'profile'
+    end
+  end
+
+  resources :pomodoros
+
 end
