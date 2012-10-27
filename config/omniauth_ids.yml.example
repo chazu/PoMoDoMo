@@ -1,3 +1,7 @@
 facebook:
   app_id: #####
   app_secret: ######
+
+twitter:
+  consumer_key: #####
+  consumer_secret: #####

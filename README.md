@@ -44,5 +44,6 @@ To use omniauth
 -----------------
 Download this file: http://curl.haxx.se/ca/cacert.pem
 Put it in your computer as: /etc/ssl/certs/cacert.pem
+Update your keys in your config/omniauth_ids.yml
 
-
+http://pomodomo.herokuapp.com/
