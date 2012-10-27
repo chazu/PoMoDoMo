@@ -210,8 +210,8 @@ Devise.setup do |config|
   
   require "omniauth-facebook"
   config.omniauth :facebook, social_keys['facebook']['app_id'], social_keys['facebook']['app_secret'], :client_options => {:ssl => {:ca_file => '/etc/ssl/certs/cacert.pem'}}
-  # require "omniauth-twitter"
-  # config.omniauth :twitter, "APP_ID", "APP_SECRET"
+  require "omniauth-twitter"
+  config.omniauth :twitter, social_keys['twitter']['consumer_key'], social_keys['twitter']['consumer_secret']
   # require "omniauth-github"
   # config.omniauth :github, "APP_ID", "APP_SECRET"
 
