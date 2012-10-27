@@ -3,8 +3,8 @@ class HomeController < ApplicationController
 
   def index
     if current_user
-      TrophyWife::TrophyOfficial.officiate(current_user)
-      raise current_user.trophies.inspect
+      # TrophyWife::TrophyOfficial.officiate(current_user)
+      # raise current_user.trophies.inspect
     end
   end
 
