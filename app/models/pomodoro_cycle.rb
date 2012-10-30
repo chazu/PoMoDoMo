@@ -11,7 +11,7 @@ class PomodoroCycle < ActiveRecord::Base
   attr_accessible :cycle_type
   
   include Workflow
-  # https://github.com/geekq/workflow
+  # Chaz, this will help you out with your trophies: https://github.com/geekq/workflow
   workflow do
     state :in_progress do
       event :fail, :transitions_to => :failed
