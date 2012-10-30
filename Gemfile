@@ -9,7 +9,7 @@ gem 'haml'
 gem 'omniauth'
 gem 'oauth2'
 gem 'omniauth-facebook'
-# gem 'omniauth-twitter'
+gem 'omniauth-twitter'
 # gem 'omniauth-github'
 gem 'heroku'
 
