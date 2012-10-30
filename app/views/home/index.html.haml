@@ -9,7 +9,10 @@
 
 .row
   .span10
-    .hero-unit#countdown_timer
+    %button.btn.btn-primary.start_pomodoro Start Pomodoro
+    -#   .hero-unit#countdown_timer
+    %ul
+      %li Cycle 1 - Work 15 Mins
   .span2
     .span Activity Feed
     .div{"ng-repeat" => "event in events" }
@@ -17,3 +20,5 @@
       {{event.text}}
       .span 
       at {{event.time}}
+
+.pomodoro_dialog

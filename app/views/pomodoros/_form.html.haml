@@ -1,4 +1,5 @@
-= form_for @pomodoro do |f|
+= form_for @pomodoro, :remote => true do |f|
+  = f.error_messages
   = f.label :name
   = f.text_field :name
   = f.submit "Create Pomodoro"

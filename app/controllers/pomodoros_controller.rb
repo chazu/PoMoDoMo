@@ -7,8 +7,17 @@ class PomodorosController < ApplicationController
     respond_with @pomodoros
   end
 
+  def show
+    @pomodoro = Pomodoro.find(params[:id])
+    respond_with @pomodoro
+  end
+
   def new
     @pomodoro = Pomodoro.new
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
@@ -21,15 +30,10 @@ class PomodorosController < ApplicationController
     end
   end
 
-  def show
-    @pomodoro = Pomodoro.find(params[:id])
-    respond_with @pomodoro
-  end
-
-  def update
-  end
-
   def edit
+  end
+  
+  def update
   end
 
   def destroy
