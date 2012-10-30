@@ -15,3 +15,4 @@
 /tmp
 
 config/omniauth_ids.yml
+.DS_Store
