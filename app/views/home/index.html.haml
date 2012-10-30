@@ -12,7 +12,6 @@
     .hero-unit#countdown_timer
   .span2
     .span Activity Feed
-    - if current_user.current_pomodoro.is_active
     .div{"ng-repeat" => "event in events" }
       .span
       {{event.text}}

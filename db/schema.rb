@@ -11,14 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121027182226) do
+ActiveRecord::Schema.define(:version => 20121030213522) do
 
   create_table "pomodoro_cycles", :force => true do |t|
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "pomodoro_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "workflow_state"
+    t.string   "cycle_type"
   end
 
   create_table "pomodoros", :force => true do |t|
