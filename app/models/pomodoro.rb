@@ -4,5 +4,9 @@ class Pomodoro < ActiveRecord::Base
   has_many :pomodoro_cycles
 
   attr_accessible :user_id
-  attr_accessible :workflow_state
+  attr_accessible :workflow_state # In Progress, Break
+  attr_accessible :name
+
+  def is_active
+    this.workflow_state == "In Progress
 end
