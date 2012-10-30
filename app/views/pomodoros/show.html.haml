@@ -1,0 +1,5 @@
+%label= @pomodoro.name
+.completed_cycles 
+  Completed Cycles
+  - @pomodoro.pomodoro_cycles.each do |pc|
+    %li= pc.pomodoro_id

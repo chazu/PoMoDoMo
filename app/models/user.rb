@@ -50,4 +50,12 @@ class User < ActiveRecord::Base
   # def trophy_score
   #   trophies.inject(0) {|memo, trophy| memo += trophy.value }
   # end
+  
+  def trophy_score
+    trophies.inject(0) {|memo, trophy| memo += trophy.value }
+  end
+
+  def current_pomodoro
+    pomodoros.last
+  end
 end

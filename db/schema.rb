@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121022213730) do
+ActiveRecord::Schema.define(:version => 20121027182226) do
 
   create_table "pomodoro_cycles", :force => true do |t|
     t.datetime "start_time"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20121022213730) do
     t.string   "workflow_state"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "name"
   end
 
   create_table "trophies", :force => true do |t|

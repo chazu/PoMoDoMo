@@ -1,5 +1,6 @@
 class PomodorosController < ApplicationController
   respond_to :html, :json, :js
+  before_filter :authenticate_user!
   
   def index
     @pomodoros = Pomodoro.all
@@ -7,9 +8,17 @@ class PomodorosController < ApplicationController
   end
 
   def new
+    @pomodoro = Pomodoro.new
   end
 
   def create
+    @pomodoro = current_user.pomodoros.build params[:pomodoro]
+    if @pomodoro.save
+      respond_with @pomodoro, :location => pomodoro_path(@pomodoro)
+    else
+      flash[:alert] = "Failed to create pomodoro"
+      render :new
+    end
   end
 
   def show
