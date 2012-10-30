@@ -1,0 +1,23 @@
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal'}) do |f|
+  .control-group
+    = f.label :email, "Email", :class => 'control-label'
+    .controls
+      = f.text_field :email, :placeholder => "Email"
+  .control-group
+    = f.label :password, "Password", :class => 'control-label'
+    .controls
+      = f.password_field :password, :placeholder => "Password"
+  .control-group
+    = f.label :password_confirmation, "Password Confirmation", :class => 'control-label'
+    .controls
+      = f.password_field :password_confirmation, :placeholder => "Password Confirmation"
+  .controls
+    = f.submit "Register", :class => 'btn'
+  %br
+  .controls or
+  %br
+  .controls
+    = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), :class => 'btn'
+  %br
+  .controls
+    = link_to "Sign in with Twitter", "#", :class => 'btn'
