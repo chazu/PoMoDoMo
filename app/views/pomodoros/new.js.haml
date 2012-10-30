@@ -7,6 +7,5 @@
     $('p.notice').delay(3000);
     $('p.notice').fadeOut();
     Pomodomo.errors.handle_ajax_errors("#{escape_javascript(@entity_errors)}", "Pomodoro")
-    
 
 $(".pomodoro_dialog").html("#{escape_javascript(render(:partial => 'form', :locals => {:pomodoro => @pomodoro}))}");

@@ -58,4 +58,12 @@ class User < ActiveRecord::Base
   def current_pomodoro
     pomodoros.last
   end
+  
+  def has_in_progress_pomodoro?
+    self.current_pomodoro && self.current_pomodoro.in_progress?
+  end
+
+  def has_waiting_pomodoro?
+    self.current_pomodoro && self.current_pomodoro.waiting?
+  end
 end

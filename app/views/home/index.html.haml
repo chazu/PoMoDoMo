@@ -9,10 +9,8 @@
 
 .row
   .span10
-    %button.btn.btn-primary.start_pomodoro Start Pomodoro
-    -#   .hero-unit#countdown_timer
-    %ul
-      %li Cycle 1 - Work 15 Mins
+    .pomodoro_actions
+      = render 'pomodoros/pomodoro_in_progress'
   .span2
     .span Activity Feed
     .div{"ng-repeat" => "event in events" }

@@ -2,13 +2,14 @@ class PomodorosController < ApplicationController
   respond_to :html, :json, :js
   before_filter :authenticate_user!
   
+  before_filter :find_pomodoro, :only => [:show, :start_cycle]
+  
   def index
     @pomodoros = Pomodoro.all
     respond_with @pomodoros
   end
 
   def show
-    @pomodoro = Pomodoro.find(params[:id])
     respond_with @pomodoro
   end
 
@@ -37,5 +38,20 @@ class PomodorosController < ApplicationController
   end
 
   def destroy
+  end
+  
+  def start_cycle
+    @pomodoro.start! unless @pomodoro.in_progress?
+
+    @pomodoro_cycle = @pomodoro.pomodoro_cycles.create(:start_time => DateTime.now, :end_time => DateTime.now + 25.minutes)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+private
+  def find_pomodoro
+    @pomodoro = Pomodoro.find params[:id]
   end
 end

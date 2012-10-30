@@ -8,10 +8,15 @@ $(document).ready ->
     modular: true
 
 
-  $('.start_pomodoro').live 'click', ->
+  $('.create_pomodoro').live 'click', ->
     $.ajax
       type: "GET"
       url: 'pomodoros/new'
       success: ->
         $('.pomodoro_dialog').dialog('open')
+
+  $('.start_pomodoro').live 'click', ->
+    $.ajax
+      type: "GET"
+      url: "pomodoros/#{$('.pomodoro_id').val()}/start_cycle"
   
