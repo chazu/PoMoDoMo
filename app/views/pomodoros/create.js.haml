@@ -1,4 +1,2 @@
 $('.pomodoro_dialog').dialog('close').html('');
-console.log("hi");
-$(".pomodoro_actions")
 $(".pomodoro_actions").html("#{escape_javascript(render(:partial => 'pomodoro_in_progress', :locals => {:pomodoro => @pomodoro}))}");

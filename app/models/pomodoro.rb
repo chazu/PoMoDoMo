@@ -37,4 +37,10 @@ class Pomodoro < ActiveRecord::Base
   def current_cycle
     self.pomodoro_cycles.last
   end
+  
+  def check_time_constraints
+    
+    # p self.current_cycle.end_time < (DateTime.now + 10.minutes)
+    self.current_cycle && self.in_progress? && self.current_cycle.in_progress? && self.current_cycle.end_time.utc < (Time.now.utc + 10.minutes)    
+  end
 end

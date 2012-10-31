@@ -1,1 +1,10 @@
+- unless @rsp.blank?
+  :plain
+    $('p.notice').hide();
+    $('p.notice').html("#{escape_javascript(@rsp)}");
+    $('p.notice').fadeIn();
+    $('p.notice').delay(3000);
+    $('p.notice').fadeOut();
+
 $(".pomodoro_actions").html("#{escape_javascript(render(:partial => 'pomodoro_in_progress'))}");
+Pomodomo.timer.start_timer()

@@ -47,12 +47,17 @@ class PomodorosController < ApplicationController
   end
   
   def start_cycle
-    @pomodoro.start! unless @pomodoro.in_progress?
+    @rsp = ''
+    unless @pomodoro.check_time_constraints
+      @pomodoro.start! unless @pomodoro.in_progress?
     
-    @pomodoro.current_cycle.complete! if @pomodoro.current_cycle
-    @pomodoro_cycle = @pomodoro.create_new_cycle
+      @pomodoro.current_cycle.complete! if @pomodoro.current_cycle
+      @pomodoro_cycle = @pomodoro.create_new_cycle
 
-    @pomodoro.complete! if @pomodoro.in_progress? && @pomodoro.pomodoro_cycles.length == 8
+      @pomodoro.complete! if @pomodoro.in_progress? && @pomodoro.pomodoro_cycles.length == 8
+    else
+      @rsp = "You didn't start your new cycle in enough time, therefore your Pomodoro failed."
+    end
 
     respond_to do |format|
       format.js

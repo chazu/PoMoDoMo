@@ -2,8 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
-  time = new Date($('.current_end_time').val())
-  $('#countdown_timer').countdown(until: time)
+  Pomodomo.timer = { 
+    start_timer: -> 
+      time = new Date($('.current_end_time').val())
+      $('#countdown_timer').countdown(until: time)
+  }
   
   Pomodomo.errors = {
     clear_error_fields: ->
@@ -25,3 +28,4 @@ $(document).ready ->
         </ul>
       ").show()
   }
+  Pomodomo.timer.start_timer()
