@@ -6,3 +6,11 @@ li.current {
   font-weight: bold;
   color: salmon;
 }
+
+span.failed_pomodoro {
+  color: red;
+}
+
+span.completed_pomodoro {
+  color: green;
+}

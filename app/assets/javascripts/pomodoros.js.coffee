@@ -19,4 +19,10 @@ $(document).ready ->
     $.ajax
       type: "GET"
       url: "pomodoros/#{$('.pomodoro_id').val()}/start_cycle"
-  
+
+  $('.cancel_pomodoro').live 'click', ->
+    if confirm("Are you sure?")
+      $.ajax
+        type: "DELETE"
+        url: "pomodoros/#{$('.pomodoro_id').val()}/"
+
