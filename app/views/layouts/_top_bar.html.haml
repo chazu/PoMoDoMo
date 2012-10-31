@@ -5,11 +5,11 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.brand{:href => "#"} PoMoDoMo
+      %a.brand{:href => root_path} PoMoDoMo
       .nav-collapse.collapse
         %ul.nav
           %li.active
-            %a{:href => "#"} Home
+            %a{:href => root_path} Home
           - if current_user
             %li
               %a{:href => user_path(current_user)} Profile

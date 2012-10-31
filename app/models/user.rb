@@ -70,4 +70,21 @@ class User < ActiveRecord::Base
   def current_pomodoro_cycle
     self.current_pomodoro.current_cycle
   end
+
+  def completed_pomodoros
+    self.pomodoros.where(:workflow_state => "complete")
+  end
+
+  def failed_pomodoros
+    self.pomodoros.where(:workflow_state => "failed")
+  end
+
+  def completed_cycles
+    cycles = []
+    self.pomodoros.each do |pomodoro|
+      cycles = cycles | pomodoro.pomodoro_cycles.where(:workflow_state => "complete")
+    end
+
+    cycles
+  end
 end

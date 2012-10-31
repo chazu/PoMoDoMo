@@ -8,11 +8,11 @@
   .row
     .span10.offset1
       %ul{:style => "list-style: none;"}
-        %li Pomodoros Completed:
-        %li Pomodoro Cycles Completed:
-        %li Pomodoros Failed:
-        %li Trophies Earned:
-        %li Total Trophy Points:
+        %li= "Pomodoros Completed: #{@user.try(:completed_pomodoros).try(:count)}"
+        %li= "Pomodoro Cycles Completed: #{@user.try(:completed_cycles).try(:count)}"
+        %li= "Pomodoros Failed: #{@user.try(:failed_pomodoros).try(:count)}"
+        %li= "Trophies Earned: #{@user.try(:trophies).try(:count)}"
+        %li= "Total Trophy Points: #{@user.try(:trophy_score)}"
 
 
 %hr
@@ -26,5 +26,6 @@
           %li
             %h4= "#{trophy.name} [#{trophy.value}]"
           %li{:style => 'list-style: none;'}
-            %p.trophy_text= trophy.text
+            %p
+              %em.trophy_text= trophy.text
           %li{:style => 'list-style: none;'}= "Earned on: #{trophy.try(:created_at).try(:strftime, '%D')}"
