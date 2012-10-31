@@ -5,8 +5,8 @@
 $(document).ready ->
   $('.pomodoro_dialog').dialog
     autoOpen: false
-    modular: true
-
+    modal: true
+    title: "Creating a new Pomodoro"
 
   $('.create_pomodoro').live 'click', ->
     $.ajax
