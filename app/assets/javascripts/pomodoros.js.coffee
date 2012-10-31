@@ -21,7 +21,7 @@ $(document).ready ->
       url: "pomodoros/#{$('.pomodoro_id').val()}/start_cycle"
 
   $('.cancel_pomodoro').live 'click', ->
-    if confirm("Are you sure?")
+    if confirm("Are you sure? This will fail your current pomodoro")
       $.ajax
         type: "DELETE"
         url: "pomodoros/#{$('.pomodoro_id').val()}/"

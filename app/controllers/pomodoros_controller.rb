@@ -39,6 +39,7 @@ class PomodorosController < ApplicationController
 
   def destroy
     @pomodoro.fail!
+    @pomodoro.current_cycle.fail!
 
     respond_to do |format|
       format.js
@@ -47,7 +48,8 @@ class PomodorosController < ApplicationController
   
   def start_cycle
     @pomodoro.start! unless @pomodoro.in_progress?
-
+    
+    @pomodoro.current_cycle.complete! if @pomodoro.current_cycle
     @pomodoro_cycle = @pomodoro.create_new_cycle
 
     @pomodoro.complete! if @pomodoro.in_progress? && @pomodoro.pomodoro_cycles.length == 8
