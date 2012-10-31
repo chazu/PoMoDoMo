@@ -4,21 +4,19 @@
       %input.current_end_time{:type => 'hidden', :value => current_user.current_pomodoro_cycle.end_time}
       #countdown_timer
 
-  You currently have a pomodoro created, yo.
-  %br
   %input.pomodoro_id{:type => 'hidden', :value => @pomodoro.id}
   Task: #{@pomodoro.name}
   %br
   Cycles:
   %ul
-    %li{:class => "#{current_cycle('1')}"} 1
-    %li{:class => "#{current_cycle('break_1')}"} 3-5 min break
-    %li{:class => "#{current_cycle('2')}"} 2
-    %li{:class => "#{current_cycle('break_2')}"} 3-5 min break
-    %li{:class => "#{current_cycle('3')}"} 3
-    %li{:class => "#{current_cycle('break_3')}"} 3-5 min break
-    %li{:class => "#{current_cycle('4')}"} 4
-    %li{:class => "#{current_cycle('break_4')}"} 15-30 min break
+    %li{:class => "#{current_cycle('1')}"} 25 Minutes Working
+    %li{:class => "#{current_cycle('break_1')}"} 5 min break
+    %li{:class => "#{current_cycle('2')}"} 25 Minutes Working
+    %li{:class => "#{current_cycle('break_2')}"} 5 min break
+    %li{:class => "#{current_cycle('3')}"} 25 Minutes Working
+    %li{:class => "#{current_cycle('break_3')}"} 5 min break
+    %li{:class => "#{current_cycle('4')}"} 25 Minutes Working
+    %li{:class => "#{current_cycle('break_4')}"} 30 min break
   
   - if current_user.current_pomodoro.pomodoro_cycles.blank?
     %button.btn.btn-primary.start_pomodoro Start Pomodoro
