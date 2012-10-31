@@ -1,0 +1,31 @@
+- unless current_user.pomodoros.blank?
+  You currently have a pomodoro created, yo.
+  %br
+  %input.pomodoro_id{:type => 'hidden', :value => @pomodoro.id}
+  Task: #{@pomodoro.name}
+  %br
+  Cycles:
+  %ul
+    %li{:class => "#{current_cycle('1')}"} 1
+    %li{:class => "#{current_cycle('break_1')}"} 3-5 min break
+    %li{:class => "#{current_cycle('2')}"} 2
+    %li{:class => "#{current_cycle('break_2')}"} 3-5 min break
+    %li{:class => "#{current_cycle('3')}"} 3
+    %li{:class => "#{current_cycle('break_3')}"} 3-5 min break
+    %li{:class => "#{current_cycle('4')}"} 4
+    %li{:class => "#{current_cycle('break_4')}"} 15-30 min break
+  
+  - if current_user.current_pomodoro.pomodoro_cycles.blank?
+    %button.btn.btn-primary.start_pomodoro Start Pomodoro
+  - elsif current_user.current_pomodoro.pomodoro_cycles.length < 8  
+    - disable_next_cycle = ''
+    - if current_user.current_pomodoro_cycle.end_time > DateTime.now
+      - disable_next_cycle = 'disabled'
+    %button.btn.cancel_pomodoro Cancel Pomodoro
+    %button.btn.btn-primary.start_pomodoro{:disabled => disable_next_cycle} Start Next Pomodoro Cycle
+  - else
+    You have #{current_user.current_pomodoro.workflow_state} this pomodoro!
+    %br
+    %button.btn.btn-primary.create_pomodoro Create a new Pomodoro
+- else
+  %button.btn.btn-primary.create_pomodoro Create a new Pomodoro

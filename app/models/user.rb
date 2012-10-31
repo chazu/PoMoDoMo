@@ -66,4 +66,8 @@ class User < ActiveRecord::Base
   def has_waiting_pomodoro?
     self.current_pomodoro && self.current_pomodoro.waiting?
   end
+  
+  def current_pomodoro_cycle
+    self.current_pomodoro.current_cycle
+  end
 end
