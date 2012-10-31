@@ -1,4 +1,9 @@
 - unless current_user.pomodoros.blank?
+  - if current_user.current_pomodoro_cycle
+    .hero-unit
+      %input.current_end_time{:type => 'hidden', :value => current_user.current_pomodoro_cycle.end_time}
+      #countdown_timer
+
   You currently have a pomodoro created, yo.
   %br
   %input.pomodoro_id{:type => 'hidden', :value => @pomodoro.id}
