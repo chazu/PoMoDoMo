@@ -10,6 +10,10 @@ Pomodomo::Application.routes.draw do
     end
   end
 
-  resources :pomodoros
+  resources :pomodoros do
+    member do
+      get :start_cycle
+    end
+  end
 
 end

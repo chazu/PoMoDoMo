@@ -13,6 +13,7 @@ gem 'omniauth-twitter'
 # gem 'omniauth-github'
 gem 'heroku'
 gem 'workflow'
+gem 'dynamic_form'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,6 +25,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-ui-rails'  
 end
 
 group :test, :development do

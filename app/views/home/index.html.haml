@@ -1,6 +1,7 @@
 .row
   .span10
-    .hero-unit#countdown_timer
+    .pomodoro_actions
+      = render 'pomodoros/pomodoro_in_progress'
   .span2
     .span Activity Feed
     .div{"ng-repeat" => "event in events" }
@@ -8,3 +9,5 @@
       {{event.text}}
       .span 
       at {{event.time}}
+
+.pomodoro_dialog
