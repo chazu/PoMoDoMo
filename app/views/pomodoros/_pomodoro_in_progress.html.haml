@@ -17,15 +17,18 @@
   
   - if current_user.current_pomodoro.pomodoro_cycles.blank?
     %button.btn.btn-primary.start_pomodoro Start Pomodoro
-  - elsif current_user.current_pomodoro.pomodoro_cycles.length < 8  
-    - disable_next_cycle = ''
+  - elsif ['completed', 'failed'].include?(current_user.current_pomodoro.workflow_state)
+    You have 
+    %span{:class => "#{current_user.current_pomodoro.workflow_state}_pomodoro"}
+      #{current_user.current_pomodoro.workflow_state}
+    this pomodoro!
+    %br
+    %button.btn.btn-primary.create_pomodoro Create a new Pomodoro
+  - else
+    - disable_next_cycle = false
     - if current_user.current_pomodoro_cycle.end_time > DateTime.now
       - disable_next_cycle = 'disabled'
     %button.btn.cancel_pomodoro Cancel Pomodoro
     %button.btn.btn-primary.start_pomodoro{:disabled => disable_next_cycle} Start Next Pomodoro Cycle
-  - else
-    You have #{current_user.current_pomodoro.workflow_state} this pomodoro!
-    %br
-    %button.btn.btn-primary.create_pomodoro Create a new Pomodoro
 - else
   %button.btn.btn-primary.create_pomodoro Create a new Pomodoro

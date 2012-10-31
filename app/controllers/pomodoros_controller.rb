@@ -2,7 +2,7 @@ class PomodorosController < ApplicationController
   respond_to :html, :json, :js
   before_filter :authenticate_user!
   
-  before_filter :find_pomodoro, :only => [:show, :start_cycle]
+  before_filter :find_pomodoro, :only => [:show, :start_cycle, :destroy]
   
   def index
     @pomodoros = Pomodoro.all
@@ -38,11 +38,18 @@ class PomodorosController < ApplicationController
   end
 
   def destroy
+    @pomodoro.fail!
+    @pomodoro.current_cycle.fail!
+
+    respond_to do |format|
+      format.js
+    end
   end
   
   def start_cycle
     @pomodoro.start! unless @pomodoro.in_progress?
-
+    
+    @pomodoro.current_cycle.complete! if @pomodoro.current_cycle
     @pomodoro_cycle = @pomodoro.create_new_cycle
 
     @pomodoro.complete! if @pomodoro.in_progress? && @pomodoro.pomodoro_cycles.length == 8

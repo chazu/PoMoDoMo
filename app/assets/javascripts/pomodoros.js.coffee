@@ -5,8 +5,8 @@
 $(document).ready ->
   $('.pomodoro_dialog').dialog
     autoOpen: false
-    modular: true
-
+    modal: true
+    title: "Creating a new Pomodoro"
 
   $('.create_pomodoro').live 'click', ->
     $.ajax
@@ -19,4 +19,10 @@ $(document).ready ->
     $.ajax
       type: "GET"
       url: "pomodoros/#{$('.pomodoro_id').val()}/start_cycle"
-  
+
+  $('.cancel_pomodoro').live 'click', ->
+    if confirm("Are you sure? This will fail your current pomodoro")
+      $.ajax
+        type: "DELETE"
+        url: "pomodoros/#{$('.pomodoro_id').val()}/"
+
