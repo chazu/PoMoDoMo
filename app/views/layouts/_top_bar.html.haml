@@ -10,20 +10,11 @@
         %ul.nav
           %li.active
             %a{:href => "#"} Home
+          - if current_user
+            %li
+              %a{:href => user_path(current_user)} Profile
           %li
             %a{:href => "#about"} About
-          %li.dropdown
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              Profile
-              %b.caret
-            - if current_user
-              %ul.dropdown-menu
-                %li
-                  %a{:href => "#"} Profile
-                %li
-                  %a{:href => "#"} Friends
-                %li
-                  %a{:href => "#"} Trophies
         .navbar-form.pull-right
           - unless current_user
             = link_to "Sign in", new_user_session_path, :class => 'btn'                    
