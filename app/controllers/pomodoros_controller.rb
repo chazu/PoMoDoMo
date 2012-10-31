@@ -43,7 +43,9 @@ class PomodorosController < ApplicationController
   def start_cycle
     @pomodoro.start! unless @pomodoro.in_progress?
 
-    @pomodoro_cycle = @pomodoro.pomodoro_cycles.create(:start_time => DateTime.now, :end_time => DateTime.now + 25.minutes)
+    @pomodoro_cycle = @pomodoro.create_new_cycle
+
+    @pomodoro.complete! if @pomodoro.in_progress? && @pomodoro.pomodoro_cycles.length == 8
 
     respond_to do |format|
       format.js

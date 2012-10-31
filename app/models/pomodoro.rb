@@ -29,5 +29,12 @@ class Pomodoro < ActiveRecord::Base
     state :completed
     state :failed
   end
-
+  
+  def create_new_cycle
+    pomodoro_cycles.create(:start_time => DateTime.now, :end_time => DateTime.now + 25.minutes)    
+  end
+  
+  def current_cycle
+    self.pomodoro_cycles.last
+  end
 end
