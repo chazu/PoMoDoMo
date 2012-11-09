@@ -6,5 +6,5 @@
     $('p.notice').delay(3000);
     $('p.notice').fadeOut();
 
-$(".pomodoro_actions").html("#{escape_javascript(render(:partial => 'pomodoro_in_progress'))}");
+$("#pomodoro_progress_container").html("#{escape_javascript(render(:partial => 'pomodoro_in_progress'))}");
 Pomodomo.timer.start_timer()
