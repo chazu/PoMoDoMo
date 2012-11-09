@@ -1,13 +1,7 @@
 - if @current_user
   .row
     .span10
-      .row
-        .span10
-          = render 'pomodoros/progress_bar'
-      .row
-        .span10
-          .pomodoro_actions
-            = render 'pomodoros/pomodoro_in_progress'
+      = render 'pomodoros/pomodoro_in_progress'
     .span2
       .span Activity Feed
       .div{"ng-repeat" => "event in events" }

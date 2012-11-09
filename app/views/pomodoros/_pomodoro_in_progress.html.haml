@@ -1,37 +1,47 @@
-- unless current_user.pomodoros.blank?
-  - if current_user.current_pomodoro_cycle
-    .hero-unit
-      %input.current_end_time{:type => 'hidden', :value => current_user.current_pomodoro_cycle.end_time}
-      #countdown_timer
+.progress_and_countdown
+  .row
+    .span10
+      = render 'pomodoros/progress_bar'
+  .row
+    .span10
+      .pomodoro_actions
 
-  %input.pomodoro_id{:type => 'hidden', :value => @pomodoro.id}
-  Task: #{@pomodoro.name}
-  %br
-  Cycles:
-  %ul
-    %li{:class => "#{current_cycle('1')}"} 25 Minutes Working
-    %li{:class => "#{current_cycle('break_1')}"} 5 min break
-    %li{:class => "#{current_cycle('2')}"} 25 Minutes Working
-    %li{:class => "#{current_cycle('break_2')}"} 5 min break
-    %li{:class => "#{current_cycle('3')}"} 25 Minutes Working
-    %li{:class => "#{current_cycle('break_3')}"} 5 min break
-    %li{:class => "#{current_cycle('4')}"} 25 Minutes Working
-    %li{:class => "#{current_cycle('break_4')}"} 30 min break
-  
-  - if current_user.current_pomodoro.pomodoro_cycles.blank?
-    %button.btn.btn-primary.start_pomodoro Start Pomodoro
-  - elsif ['completed', 'failed'].include?(current_user.current_pomodoro.workflow_state)
-    You have 
-    %span{:class => "#{current_user.current_pomodoro.workflow_state}_pomodoro"}
-      #{current_user.current_pomodoro.workflow_state}
-    this pomodoro!
-    %br
-    %button.btn.btn-primary.create_pomodoro Create a new Pomodoro
-  - else
-    - disable_next_cycle = false
-    - if current_user.current_pomodoro_cycle.end_time > DateTime.now
-      - disable_next_cycle = 'disabled'
-    %button.btn.cancel_pomodoro Cancel Pomodoro
-    %button.btn.btn-primary.start_pomodoro{:disabled => disable_next_cycle} Start Next Pomodoro Cycle
-- else
-  %button.btn.btn-primary.create_pomodoro Create a new Pomodoro
+        - unless current_user.pomodoros.blank?
+          - if current_user.current_pomodoro_cycle
+            .hero-unit
+              %input.current_end_time{:type => 'hidden', :value => current_user.current_pomodoro_cycle.end_time}
+              #countdown_timer
+.row
+  .span10
+    .pomodoro_actions
+      %input.pomodoro_id{:type => 'hidden', :value => @pomodoro.id}
+      Task: #{@pomodoro.name}
+      %br
+      Cycles:
+      %ul
+        %li{:class => "#{current_cycle('1')}"} 25 Minutes Working
+        %li{:class => "#{current_cycle('break_1')}"} 5 min break
+        %li{:class => "#{current_cycle('2')}"} 25 Minutes Working
+        %li{:class => "#{current_cycle('break_2')}"} 5 min break
+        %li{:class => "#{current_cycle('3')}"} 25 Minutes Working
+        %li{:class => "#{current_cycle('break_3')}"} 5 min break
+        %li{:class => "#{current_cycle('4')}"} 25 Minutes Working
+        %li{:class => "#{current_cycle('break_4')}"} 30 min break
+      
+      - if current_user.current_pomodoro.pomodoro_cycles.blank?
+        %button.btn.btn-primary.start_pomodoro Start Pomodoro
+      - elsif ['completed', 'failed'].include?(current_user.current_pomodoro.workflow_state)
+        You have 
+        %span{:class => "#{current_user.current_pomodoro.workflow_state}_pomodoro"}
+          #{current_user.current_pomodoro.workflow_state}
+        this pomodoro!
+        %br
+        %button.btn.btn-primary.create_pomodoro Create a new Pomodoro
+      - else
+        - disable_next_cycle = false
+        - if current_user.current_pomodoro_cycle.end_time > DateTime.now
+          - disable_next_cycle = 'disabled'
+        %button.btn.cancel_pomodoro Cancel Pomodoro
+        %button.btn.btn-primary.start_pomodoro{:disabled => disable_next_cycle} Start Next Pomodoro Cycle
+    - else
+      %button.btn.btn-primary.create_pomodoro Create a new Pomodoro
