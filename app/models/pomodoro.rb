@@ -41,6 +41,24 @@ class Pomodoro < ActiveRecord::Base
   def check_time_constraints
     
     # p self.current_cycle.end_time < (DateTime.now + 10.minutes)
-    self.current_cycle && self.in_progress? && self.current_cycle.in_progress? && self.current_cycle.end_time.utc < (Time.now.utc + 10.minutes)    
+    self.current_cycle && self.in_progress? && self.current_cycle.in_progress? && Time.now.utc > (self.current_cycle.end_time.utc + 10.minutes)    
+  end
+  
+  def build_workflow_arr
+    workflow_arr = []
+    8.times do |x|
+      case pomodoro_cycles.try(:[], x).try(:workflow_state)
+      when 'in_progress'
+        workflow_arr << 'active'
+      when 'completed'
+        workflow_arr << 'completed'
+      when 'failed'
+        workflow_arr << 'failed'
+      else
+        workflow_arr << ''
+      end
+    end
+    workflow_arr
+        
   end
 end

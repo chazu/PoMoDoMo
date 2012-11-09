@@ -2,11 +2,12 @@
   #progress_outside
     #progress_shadow
       #progress_inside
-        .progress_inside.cycle
-        .progress_inside.small_break
-        .progress_inside.cycle
-        .progress_inside.small_break
-        .progress_inside.cycle
-        .progress_inside.small_break
-        .progress_inside.cycle
-        .progress_inside.large_break
+        - workflow_arr = @pomodoro.build_workflow_arr
+        .progress_inside.cycle{:class => "#{workflow_arr[0]}_cycle"}
+        .progress_inside.small_break{:class => "#{workflow_arr[1]}_break"}
+        .progress_inside.cycle{:class => "#{workflow_arr[2]}_cycle"}
+        .progress_inside.small_break{:class => "#{workflow_arr[3]}_break"}
+        .progress_inside.cycle{:class => "#{workflow_arr[4]}_cycle"}
+        .progress_inside.small_break{:class => "#{workflow_arr[5]}_break"}
+        .progress_inside.cycle{:class => "#{workflow_arr[6]}_cycle"}
+        .progress_inside.large_break{:class => "#{workflow_arr[7]}_break"}
